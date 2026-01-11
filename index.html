@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngageAI - Respostas Inteligentes para YouTube</title>
+    <meta name="description" content="Gere respostas inteligentes para comentários do YouTube com IA. Aumente seu engajamento em segundos!">
+    <link rel="icon" type="image/png" href="assets/icon128.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #1E1B4B 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #C7D2FE;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(90deg, #818CF8, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #C7D2FE;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #10B981, #059669);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .badge-free {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: linear-gradient(90deg, #10B981, #059669);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Features */
+        .features {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #A5B4FC;
+            line-height: 1.6;
+        }
+
+        /* Pricing */
+        .pricing {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-subtitle {
+            text-align: center;
+            color: #A5B4FC;
+            margin-bottom: 60px;
+            font-size: 18px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(16, 185, 129, 0.2));
+            border: 2px solid #10B981;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .plan-price {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .plan-price span {
+            font-size: 18px;
+            font-weight: 500;
+            color: #A5B4FC;
+        }
+
+        .plan-description {
+            color: #A5B4FC;
+            margin-bottom: 24px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: #10B981;
+            font-weight: 700;
+        }
+
+        .plan-btn {
+            display: block;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .plan-btn.primary {
+            background: linear-gradient(90deg, #10B981, #059669);
+            color: white;
+        }
+
+        .plan-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* How it works */
+        .how-it-works {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 60px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366F1, #4F46E5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #A5B4FC;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.2);
+            padding: 40px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #A5B4FC;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copy {
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="assets/icon128.png" alt="EngageAI">
+            <span>EngageAI</span>
+        </div>
+        <nav>
+            <a href="#features">Recursos</a>
+            <a href="#pricing">Planos</a>
+            <a href="#how-it-works">Como Funciona</a>
+            <a href="privacidade.html">Privacidade</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Respostas <span>Inteligentes</span> para YouTube</h1>
+            <p>Use IA com GPT-5 para gerar respostas personalizadas e contextualizadas para comentários do seu canal. Aumente seu engajamento em segundos!</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary" id="install-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C8.21 0 5.831 1.757 4.5 4.5L8.5 8.5C8.5 8.5 9.5 6 12 6s3.5 2.5 3.5 2.5l4-4C18.169 1.757 15.79 0 12 0zM4.5 4.5C1.757 5.831 0 8.21 0 12c0 3.79 1.757 6.169 4.5 7.5l4-4S6 14.5 6 12s2.5-3.5 2.5-3.5l-4-4zM19.5 4.5l-4 4s2.5 1 2.5 3.5-2.5 3.5-2.5 3.5l4 4c2.743-1.331 4.5-3.71 4.5-7.5 0-3.79-1.757-6.169-4.5-7.5zM8.5 15.5l-4 4C5.831 22.243 8.21 24 12 24c3.79 0 6.169-1.757 7.5-4.5l-4-4S14.5 18 12 18s-3.5-2.5-3.5-2.5z"/>
+                    </svg>
+                    Instalar Extensão Grátis
+                </a>
+                <a href="#how-it-works" class="btn-secondary">Ver Como Funciona</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="assets/promo-small.png" alt="EngageAI Preview">
+            <div class="badge-free">🎁 3 respostas grátis/mês</div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <h2>Por que usar o EngageAI?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>IA com GPT-5</h3>
+                <p>Utilize a mais avançada tecnologia de inteligência artificial para gerar respostas naturais e relevantes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Respostas em 1 Clique</h3>
+                <p>Economize horas de trabalho. Basta clicar no botão e a resposta perfeita é gerada instantaneamente.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Contextualizadas</h3>
+                <p>A IA analisa o comentário, o título do vídeo e gera respostas que fazem sentido para o contexto.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🇧🇷</div>
+                <h3>Português Brasileiro</h3>
+                <p>Desenvolvido especialmente para criadores brasileiros, com respostas naturais em PT-BR.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">😊</div>
+                <h3>Tom Profissional</h3>
+                <p>Respostas amigáveis e profissionais que fortalecem o relacionamento com sua audiência.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Privacidade Garantida</h3>
+                <p>Seus dados nunca são armazenados. Processamos apenas para gerar as respostas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <h2>Planos Simples e Acessíveis</h2>
+        <p class="pricing-subtitle">Comece grátis e faça upgrade quando precisar</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Grátis</div>
+                <div class="plan-price">R$0</div>
+                <div class="plan-description">Perfeito para testar</div>
+                <ul class="plan-features">
+                    <li>3 respostas por mês</li>
+                    <li>IA com GPT-5</li>
+                    <li>Respostas contextualizadas</li>
+                    <li>Suporte por email</li>
+                </ul>
+                <a href="#" class="plan-btn secondary" id="free-btn">Começar Grátis</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="plan-name">Básico</div>
+                <div class="plan-price">R$19<span>/mês</span></div>
+                <div class="plan-description">Para criadores iniciantes</div>
+                <ul class="plan-features">
+                    <li>100 respostas por mês</li>
+                    <li>IA com GPT-5</li>
+                    <li>Respostas contextualizadas</li>
+                    <li>Suporte prioritário</li>
+                    <li>Cancele quando quiser</li>
+                </ul>
+                <a href="#" class="plan-btn primary">Assinar Agora</a>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">R$49<span>/mês</span></div>
+                <div class="plan-description">Para criadores profissionais</div>
+                <ul class="plan-features">
+                    <li>Respostas ilimitadas</li>
+                    <li>IA com GPT-5</li>
+                    <li>Respostas contextualizadas</li>
+                    <li>Suporte VIP</li>
+                    <li>Cancele quando quiser</li>
+                </ul>
+                <a href="#" class="plan-btn secondary">Assinar Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works" id="how-it-works">
+        <h2>Como Funciona</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Instale a Extensão</h3>
+                <p>Baixe grátis na Chrome Web Store com apenas um clique</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Acesse o YouTube</h3>
+                <p>Vá para qualquer vídeo e encontre os comentários</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Clique no Botão</h3>
+                <p>Veja o botão "✨ Responder com IA" em cada comentário</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Publique!</h3>
+                <p>Revise a resposta, edite se necessário e publique</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="privacidade.html">Política de Privacidade</a>
+            <a href="termos.html">Termos de Uso</a>
+            <a href="mailto:suporte@engageai.com.br">Suporte</a>
+        </div>
+        <p class="footer-copy">© 2026 EngageAI. Desenvolvido com ❤️ no Brasil.</p>
+    </footer>
+
+    <script>
+        // Quando tiver o link da Chrome Web Store, atualizar aqui
+        const CHROME_STORE_URL = '#'; // TODO: Atualizar com link real
+
+        document.getElementById('install-btn').href = CHROME_STORE_URL;
+        document.getElementById('free-btn').href = CHROME_STORE_URL;
+    </script>
+</body>
+</html>
