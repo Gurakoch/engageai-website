@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EngageAI - Respostas Inteligentes para YouTube</title>
-    <meta name="description" content="Gere respostas inteligentes para comentários do YouTube com IA. Aumente seu engajamento em segundos!">
+    <title>EngageAI - Respostas Inteligentes para YouTube com IA</title>
+    <meta name="description" content="Economize horas respondendo comentários do YouTube. IA gera respostas contextualizadas em 1 clique. Funciona no YouTube e YouTube Studio. Teste grátis!">
+    <meta name="keywords" content="youtube, comentários, IA, engajamento, criador de conteúdo, respostas automáticas, GPT, youtube studio">
+    <meta name="author" content="EngageAI">
+    <meta name="robots" content="index, follow">
     <link rel="icon" type="image/png" href="assets/icon128.png">
+    <link rel="canonical" href="https://engageai.com.br/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://engageai.com.br/">
+    <meta property="og:title" content="EngageAI - Respostas Inteligentes para YouTube com IA">
+    <meta property="og:description" content="Economize horas respondendo comentários. IA gera respostas contextualizadas em 1 clique. Teste grátis!">
+    <meta property="og:image" content="https://engageai.com.br/assets/og-image.png">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://engageai.com.br/">
+    <meta name="twitter:title" content="EngageAI - Respostas Inteligentes para YouTube">
+    <meta name="twitter:description" content="Economize horas respondendo comentários. IA gera respostas contextualizadas em 1 clique.">
+    <meta name="twitter:image" content="https://engageai.com.br/assets/og-image.png">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "EngageAI",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+        },
+        "description": "Extensão para Chrome que usa IA para gerar respostas inteligentes para comentários do YouTube",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "10"
+        }
+    }
+    </script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -48,6 +90,12 @@
             font-weight: 700;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         nav a {
             color: #C7D2FE;
             text-decoration: none;
@@ -60,11 +108,34 @@
             color: white;
         }
 
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         /* Hero */
         .hero {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 60px 40px 80px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
@@ -72,7 +143,7 @@
         }
 
         .hero-content h1 {
-            font-size: 52px;
+            font-size: 46px;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 24px;
@@ -82,13 +153,31 @@
             background: linear-gradient(90deg, #818CF8, #10B981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-content p {
-            font-size: 20px;
+            font-size: 19px;
             color: #C7D2FE;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             line-height: 1.6;
+        }
+
+        .hero-benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .hero-benefit {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #10B981;
+            font-weight: 500;
         }
 
         .cta-buttons {
@@ -109,6 +198,8 @@
             align-items: center;
             gap: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -152,6 +243,39 @@
             font-weight: 700;
             font-size: 14px;
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Social Proof */
+        .social-proof {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            text-align: center;
+        }
+
+        .proof-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #10B981;
+        }
+
+        .proof-label {
+            font-size: 14px;
+            color: #A5B4FC;
+            margin-top: 4px;
         }
 
         /* Features */
@@ -164,7 +288,14 @@
         .features h2 {
             text-align: center;
             font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .features-subtitle {
+            text-align: center;
+            color: #A5B4FC;
             margin-bottom: 60px;
+            font-size: 18px;
         }
 
         .features-grid {
@@ -186,19 +317,84 @@
             background: rgba(255,255,255,0.08);
         }
 
+        .feature-card.highlight {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(99, 102, 241, 0.1));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .feature-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #10B981, #059669);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
         .feature-icon {
             font-size: 40px;
             margin-bottom: 16px;
         }
 
         .feature-card h3 {
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 12px;
         }
 
         .feature-card p {
             color: #A5B4FC;
             line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 24px;
+        }
+
+        .use-cases h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .use-case {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 24px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .use-case-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .use-case h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .use-case p {
+            color: #A5B4FC;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         /* Pricing */
@@ -244,6 +440,21 @@
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(16, 185, 129, 0.2));
             border: 2px solid #10B981;
             transform: scale(1.05);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: "Mais Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #10B981, #059669);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .pricing-card.featured:hover {
@@ -271,6 +482,7 @@
         .plan-description {
             color: #A5B4FC;
             margin-bottom: 24px;
+            font-size: 14px;
         }
 
         .plan-features {
@@ -284,6 +496,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 15px;
         }
 
         .plan-features li::before {
@@ -298,12 +511,16 @@
             border-radius: 10px;
             font-weight: 600;
             text-decoration: none;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .plan-btn.primary {
             background: linear-gradient(90deg, #10B981, #059669);
             color: white;
+        }
+
+        .plan-btn.primary:hover {
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
         }
 
         .plan-btn.secondary {
@@ -357,12 +574,94 @@
             font-size: 14px;
         }
 
+        /* FAQ */
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 24px;
+            color: #10B981;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            padding: 0 24px 20px;
+            color: #A5B4FC;
+            line-height: 1.6;
+        }
+
+        /* CTA Final */
+        .cta-final {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .cta-final h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-final p {
+            color: #A5B4FC;
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+
         /* Footer */
         footer {
             background: rgba(0,0,0,0.2);
             padding: 40px;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 40px;
         }
 
         .footer-links {
@@ -370,6 +669,7 @@
             justify-content: center;
             gap: 30px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -389,17 +689,87 @@
 
         /* Responsive */
         @media (max-width: 968px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                margin: 20px 0;
+                font-size: 20px;
+            }
+
             .hero {
                 grid-template-columns: 1fr;
                 text-align: center;
+                padding: 40px 20px 60px;
             }
 
             .hero-content h1 {
-                font-size: 36px;
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .hero-benefits {
+                justify-content: center;
             }
 
             .cta-buttons {
                 justify-content: center;
+            }
+
+            .cta-buttons a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .social-proof {
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .proof-value {
+                font-size: 28px;
+            }
+
+            .features,
+            .pricing,
+            .how-it-works,
+            .faq,
+            .cta-final {
+                padding: 60px 20px;
+            }
+
+            .features h2,
+            .pricing h2,
+            .how-it-works h2,
+            .faq h2,
+            .cta-final h2 {
+                font-size: 28px;
             }
 
             .features-grid,
@@ -407,16 +777,49 @@
                 grid-template-columns: 1fr;
             }
 
+            .use-cases {
+                padding: 60px 20px;
+                margin: 0 20px;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
             .pricing-card.featured {
                 transform: none;
             }
 
-            .steps {
-                grid-template-columns: repeat(2, 1fr);
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
             }
 
-            nav {
-                display: none;
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .badge-free {
+                top: -10px;
+                right: 10px;
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 14px 24px;
+                font-size: 16px;
             }
         }
     </style>
@@ -429,75 +832,141 @@
             <span>EngageAI</span>
         </div>
         <nav>
-            <a href="#features">Recursos</a>
-            <a href="#pricing">Planos</a>
-            <a href="#how-it-works">Como Funciona</a>
-            <a href="privacidade.html">Privacidade</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#features" onclick="closeMenu()">Recursos</a>
+                <a href="#pricing" onclick="closeMenu()">Planos</a>
+                <a href="#how-it-works" onclick="closeMenu()">Como Funciona</a>
+                <a href="#faq" onclick="closeMenu()">FAQ</a>
+            </div>
         </nav>
     </header>
 
     <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Respostas <span>Inteligentes</span> para YouTube</h1>
-            <p>Use IA com GPT-5 para gerar respostas personalizadas e contextualizadas para comentários do seu canal. Aumente seu engajamento em segundos!</p>
+            <h1>Pare de Perder Horas<br>Respondendo <span>Comentários</span></h1>
+            <p>Use IA para gerar respostas personalizadas para seu canal do YouTube em segundos. Funciona no YouTube e no YouTube Studio.</p>
+            <div class="hero-benefits">
+                <span class="hero-benefit">✓ Funciona no YouTube Studio</span>
+                <span class="hero-benefit">✓ Respostas em lote</span>
+                <span class="hero-benefit">✓ 5 tons de voz</span>
+            </div>
             <div class="cta-buttons">
                 <a href="#" class="btn-primary" id="install-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0C8.21 0 5.831 1.757 4.5 4.5L8.5 8.5C8.5 8.5 9.5 6 12 6s3.5 2.5 3.5 2.5l4-4C18.169 1.757 15.79 0 12 0zM4.5 4.5C1.757 5.831 0 8.21 0 12c0 3.79 1.757 6.169 4.5 7.5l4-4S6 14.5 6 12s2.5-3.5 2.5-3.5l-4-4zM19.5 4.5l-4 4s2.5 1 2.5 3.5-2.5 3.5-2.5 3.5l4 4c2.743-1.331 4.5-3.71 4.5-7.5 0-3.79-1.757-6.169-4.5-7.5zM8.5 15.5l-4 4C5.831 22.243 8.21 24 12 24c3.79 0 6.169-1.757 7.5-4.5l-4-4S14.5 18 12 18s-3.5-2.5-3.5-2.5z"/>
                     </svg>
-                    Instalar Extensão Grátis
+                    Instalar Grátis no Chrome
                 </a>
                 <a href="#how-it-works" class="btn-secondary">Ver Como Funciona</a>
             </div>
         </div>
         <div class="hero-image">
-            <img src="assets/screenshot-hero.png" alt="EngageAI em ação no YouTube">
+            <img src="assets/screenshot-hero.png" alt="EngageAI gerando respostas automáticas para comentários do YouTube">
             <div class="badge-free">🎁 3 respostas grátis/mês</div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="proof-item">
+            <div class="proof-value">1.000+</div>
+            <div class="proof-label">Respostas geradas</div>
+        </div>
+        <div class="proof-item">
+            <div class="proof-value">5⭐</div>
+            <div class="proof-label">Avaliação na Chrome Store</div>
+        </div>
+        <div class="proof-item">
+            <div class="proof-value">2 min</div>
+            <div class="proof-label">Para configurar</div>
         </div>
     </section>
 
     <!-- Features -->
     <section class="features" id="features">
-        <h2>Por que usar o EngageAI?</h2>
+        <h2>Tudo que Você Precisa para Engajar</h2>
+        <p class="features-subtitle">Ferramentas pensadas para criadores que levam seu canal a sério</p>
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">✨</div>
-                <h3>IA com GPT-5</h3>
-                <p>Utilize a mais avançada tecnologia de inteligência artificial para gerar respostas naturais e relevantes.</p>
+            <div class="feature-card highlight">
+                <span class="feature-badge">Exclusivo</span>
+                <div class="feature-icon">🎬</div>
+                <h3>YouTube Studio Integrado</h3>
+                <p>Responda comentários direto no YouTube Studio. Selecione vários de uma vez e gere respostas em lote.</p>
+            </div>
+            <div class="feature-card highlight">
+                <span class="feature-badge">Novo</span>
+                <div class="feature-icon">📊</div>
+                <h3>Análise de Comentários</h3>
+                <p>Veja padrões, sentimentos e insights sobre sua audiência. Entenda o que seus inscritos querem.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Respostas em 1 Clique</h3>
-                <p>Economize horas de trabalho. Basta clicar no botão e a resposta perfeita é gerada instantaneamente.</p>
+                <div class="feature-icon">🎭</div>
+                <h3>5 Tons de Voz</h3>
+                <p>Escolha entre: Neutra, Didática, Direta, Informal ou Técnica. A resposta combina com seu estilo.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
-                <h3>Contextualizadas</h3>
-                <p>A IA analisa o comentário e a transcrição do vídeo para gerar respostas que fazem sentido para o contexto.</p>
+                <h3>Contexto do Vídeo</h3>
+                <p>A IA analisa título, descrição e transcrição do vídeo para dar respostas que fazem sentido.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Respostas em 1 Clique</h3>
+                <p>Botão aparece em cada comentário. Um clique e a resposta está pronta para publicar.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🇧🇷</div>
-                <h3>Português Brasileiro</h3>
-                <p>Desenvolvido especialmente para criadores brasileiros, com respostas naturais em PT-BR.</p>
+                <h3>Feito para o Brasil</h3>
+                <p>Respostas naturais em português brasileiro. Nada de traduções estranhas.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">😊</div>
-                <h3>Tom Profissional</h3>
-                <p>Respostas amigáveis e profissionais que fortalecem o relacionamento com sua audiência.</p>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <h2>Perfeito Para Criadores Que...</h2>
+        <div class="use-cases-grid">
+            <div class="use-case">
+                <div class="use-case-icon">📈</div>
+                <div>
+                    <h4>Querem mais engajamento</h4>
+                    <p>Responder comentários aumenta a visibilidade do vídeo no algoritmo do YouTube.</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacidade Garantida</h3>
-                <p>Seus dados nunca são armazenados. Processamos apenas para gerar as respostas.</p>
+            <div class="use-case">
+                <div class="use-case-icon">⏰</div>
+                <div>
+                    <h4>Não têm tempo</h4>
+                    <p>Economize horas por semana respondendo dezenas de comentários em minutos.</p>
+                </div>
+            </div>
+            <div class="use-case">
+                <div class="use-case-icon">🤝</div>
+                <div>
+                    <h4>Valorizam a comunidade</h4>
+                    <p>Mostre que se importa respondendo mais pessoas, mesmo com canal grande.</p>
+                </div>
+            </div>
+            <div class="use-case">
+                <div class="use-case-icon">🎓</div>
+                <div>
+                    <h4>Fazem conteúdo educativo</h4>
+                    <p>Tire dúvidas com explicações contextualizadas baseadas no próprio vídeo.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing -->
     <section class="pricing" id="pricing">
-        <h2>Planos Simples e Acessíveis</h2>
-        <p class="pricing-subtitle">Comece grátis e faça upgrade quando precisar</p>
+        <h2>Planos para Todo Tamanho de Canal</h2>
+        <p class="pricing-subtitle">Comece grátis. Upgrade quando seu canal crescer.</p>
         <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="plan-name">Grátis</div>
@@ -505,84 +974,179 @@
                 <div class="plan-description">Perfeito para testar</div>
                 <ul class="plan-features">
                     <li>3 respostas por mês</li>
-                    <li>IA com GPT-5</li>
-                    <li>Respostas contextualizadas</li>
-                    <li>Suporte por email</li>
+                    <li>Todos os tons de voz</li>
+                    <li>YouTube + YouTube Studio</li>
+                    <li>Contexto do vídeo</li>
                 </ul>
                 <a href="#" class="plan-btn secondary" id="free-btn">Começar Grátis</a>
             </div>
             <div class="pricing-card featured">
                 <div class="plan-name">Básico</div>
                 <div class="plan-price">R$19<span>/mês</span></div>
-                <div class="plan-description">Para criadores iniciantes</div>
+                <div class="plan-description">Para canais em crescimento</div>
                 <ul class="plan-features">
                     <li>100 respostas por mês</li>
-                    <li>IA com GPT-5</li>
-                    <li>Respostas contextualizadas</li>
+                    <li>Resposta em lote (Studio)</li>
+                    <li>Análise de comentários</li>
                     <li>Suporte prioritário</li>
                     <li>Cancele quando quiser</li>
                 </ul>
-                <a href="#" class="plan-btn primary">Assinar Agora</a>
+                <a href="#" class="plan-btn primary" id="basic-btn">Assinar Básico</a>
             </div>
             <div class="pricing-card">
                 <div class="plan-name">Pro</div>
                 <div class="plan-price">R$49<span>/mês</span></div>
-                <div class="plan-description">Para criadores profissionais</div>
+                <div class="plan-description">Para canais profissionais</div>
                 <ul class="plan-features">
                     <li>Respostas ilimitadas</li>
-                    <li>IA com GPT-5</li>
-                    <li>Respostas contextualizadas</li>
-                    <li>Suporte VIP</li>
+                    <li>Tudo do plano Básico</li>
+                    <li>Suporte VIP via WhatsApp</li>
+                    <li>Novas funções primeiro</li>
                     <li>Cancele quando quiser</li>
                 </ul>
-                <a href="#" class="plan-btn secondary">Assinar Agora</a>
+                <a href="#" class="plan-btn secondary" id="pro-btn">Assinar Pro</a>
             </div>
         </div>
     </section>
 
     <!-- How it works -->
     <section class="how-it-works" id="how-it-works">
-        <h2>Como Funciona</h2>
+        <h2>Configurar Leva 2 Minutos</h2>
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
                 <h3>Instale a Extensão</h3>
-                <p>Baixe grátis na Chrome Web Store com apenas um clique</p>
+                <p>Um clique na Chrome Web Store e está instalado</p>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
-                <h3>Acesse o YouTube</h3>
-                <p>Vá para qualquer vídeo e encontre os comentários</p>
+                <h3>Faça Login</h3>
+                <p>Entre com Google ou crie conta com email</p>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
-                <h3>Clique no Botão</h3>
-                <p>Veja o botão "✨ Responder com IA" em cada comentário</p>
+                <h3>Vá para um Vídeo</h3>
+                <p>Abra qualquer vídeo do YouTube com comentários</p>
             </div>
             <div class="step">
                 <div class="step-number">4</div>
-                <h3>Publique!</h3>
-                <p>Revise a resposta, edite se necessário e publique</p>
+                <h3>Clique e Publique</h3>
+                <p>Botão ✨ aparece em cada comentário. Clique, revise e publique!</p>
             </div>
         </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <h2>Perguntas Frequentes</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">A resposta fica genérica?</div>
+            <div class="faq-answer">
+                <p>Não! A IA lê o comentário, o título do vídeo, a descrição e até a transcrição quando disponível. Cada resposta é única e faz sentido para aquele contexto específico.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Funciona em português?</div>
+            <div class="faq-answer">
+                <p>Sim! Desenvolvemos especialmente para criadores brasileiros. As respostas saem em português natural, sem sotaque de tradução automática.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Posso editar antes de publicar?</div>
+            <div class="faq-answer">
+                <p>Claro! A resposta é gerada no campo de texto. Você pode editar, adicionar ou remover qualquer parte antes de publicar. Você tem controle total.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Funciona no YouTube Studio?</div>
+            <div class="faq-answer">
+                <p>Sim! Além do YouTube normal, funciona no YouTube Studio onde você pode selecionar vários comentários e gerar respostas em lote. Economiza muito tempo!</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Como cancelo a assinatura?</div>
+            <div class="faq-answer">
+                <p>Direto na extensão, com um clique. Sem burocracia, sem precisar mandar email. Você volta para o plano grátis imediatamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final">
+        <h2>Pronto para Economizar Tempo?</h2>
+        <p>Comece com 3 respostas grátis. Sem cartão de crédito.</p>
+        <a href="#" class="btn-primary" id="final-cta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C8.21 0 5.831 1.757 4.5 4.5L8.5 8.5C8.5 8.5 9.5 6 12 6s3.5 2.5 3.5 2.5l4-4C18.169 1.757 15.79 0 12 0zM4.5 4.5C1.757 5.831 0 8.21 0 12c0 3.79 1.757 6.169 4.5 7.5l4-4S6 14.5 6 12s2.5-3.5 2.5-3.5l-4-4zM19.5 4.5l-4 4s2.5 1 2.5 3.5-2.5 3.5-2.5 3.5l4 4c2.743-1.331 4.5-3.71 4.5-7.5 0-3.79-1.757-6.169-4.5-7.5zM8.5 15.5l-4 4C5.831 22.243 8.21 24 12 24c3.79 0 6.169-1.757 7.5-4.5l-4-4S14.5 18 12 18s-3.5-2.5-3.5-2.5z"/>
+            </svg>
+            Instalar Extensão Grátis
+        </a>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="privacidade.html">Política de Privacidade</a>
+            <a href="privacidade.html">Privacidade</a>
             <a href="termos.html">Termos de Uso</a>
             <a href="mailto:suporte@engageai.com.br">Suporte</a>
+            <a href="sugestoes.html">Sugestões</a>
         </div>
-        <p class="footer-copy">© 2026 EngageAI. Desenvolvido com ❤️ no Brasil.</p>
+        <p class="footer-copy">© 2026 EngageAI. Feito com ❤️ no Brasil para criadores de conteúdo.</p>
     </footer>
 
     <script>
-        // Quando tiver o link da Chrome Web Store, atualizar aqui
-        const CHROME_STORE_URL = '#'; // TODO: Atualizar com link real
+        const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/engageai-youtube-reply-ge/jnpdhphjpfgmiapllghmkbakpgpbogjj';
 
+        // Links dos botões
         document.getElementById('install-btn').href = CHROME_STORE_URL;
         document.getElementById('free-btn').href = CHROME_STORE_URL;
+        document.getElementById('basic-btn').href = CHROME_STORE_URL;
+        document.getElementById('pro-btn').href = CHROME_STORE_URL;
+        document.getElementById('final-cta').href = CHROME_STORE_URL;
+
+        // Mobile menu
+        function toggleMenu() {
+            document.getElementById('nav-links').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('nav-links').classList.remove('active');
+        }
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasOpen = item.classList.contains('open');
+                
+                // Fecha todos
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                
+                // Abre o clicado (se não estava aberto)
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
