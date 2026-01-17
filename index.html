@@ -624,7 +624,7 @@
         }
 
         .faq-item.open .faq-answer {
-            max-height: 200px;
+            max-height: 300px;
         }
 
         .faq-answer p {
@@ -1020,38 +1020,45 @@
     <section class="faq" id="faq">
         <h2>Perguntas Frequentes</h2>
         
-        <div class="faq-item">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
             <div class="faq-question">A resposta fica genérica?</div>
             <div class="faq-answer">
-                <p>Não! A IA lê o comentário, o título do vídeo, a descrição e até a transcrição quando disponível. Cada resposta é única e faz sentido para aquele contexto específico.</p>
+                <p>Não! A IA lê o comentário completo, o título do vídeo, a descrição e até a transcrição quando disponível. Cada resposta é única, personalizada e faz sentido para aquele contexto específico. Você pode escolher entre tons formais, descontraídos ou empolgados.</p>
             </div>
         </div>
         
-        <div class="faq-item">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
             <div class="faq-question">Funciona em português?</div>
             <div class="faq-answer">
-                <p>Sim! Desenvolvemos especialmente para criadores brasileiros. As respostas saem em português natural, sem sotaque de tradução automática.</p>
+                <p>Sim! Desenvolvemos especialmente para criadores brasileiros. As respostas saem em português natural, fluente, sem aquele sotaque de tradução automática. Você pode até adicionar gírias e emojis!</p>
             </div>
         </div>
         
-        <div class="faq-item">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
             <div class="faq-question">Posso editar antes de publicar?</div>
             <div class="faq-answer">
-                <p>Claro! A resposta é gerada no campo de texto. Você pode editar, adicionar ou remover qualquer parte antes de publicar. Você tem controle total.</p>
+                <p>Claro! A resposta é gerada diretamente no campo de texto do YouTube. Você pode editar, adicionar ou remover qualquer parte antes de publicar. Controle total nas suas mãos.</p>
             </div>
         </div>
         
-        <div class="faq-item">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
             <div class="faq-question">Funciona no YouTube Studio?</div>
             <div class="faq-answer">
-                <p>Sim! Além do YouTube normal, funciona no YouTube Studio onde você pode selecionar vários comentários e gerar respostas em lote. Economiza muito tempo!</p>
+                <p>Sim! Além do YouTube normal, funciona perfeitamente no YouTube Studio. Lá você pode selecionar vários comentários de uma vez e gerar respostas em lote com análise de sentimento. Economiza muito tempo!</p>
             </div>
         </div>
         
-        <div class="faq-item">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
             <div class="faq-question">Como cancelo a assinatura?</div>
             <div class="faq-answer">
-                <p>Direto na extensão, com um clique. Sem burocracia, sem precisar mandar email. Você volta para o plano grátis imediatamente.</p>
+                <p>Direto na extensão, com um clique no botão "Cancelar Assinatura". Sem burocracia, sem precisar mandar email ou falar com atendente. Você volta para o plano grátis imediatamente e mantém seus créditos até o fim do período.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+            <div class="faq-question">Quantas respostas posso gerar?</div>
+            <div class="faq-answer">
+                <p>O plano Grátis inclui 10 créditos por mês. O Creator tem 200 créditos e o Pro tem 1000 créditos. 1 crédito = 1 resposta ou 1 análise de comentários. Os créditos renovam todo mês automaticamente.</p>
             </div>
         </div>
     </section>
