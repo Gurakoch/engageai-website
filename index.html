@@ -246,6 +246,87 @@
             animation: pulse 2s infinite;
         }
 
+        /* Carrossel de imagens */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            display: block;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .carousel-dot.active {
+            background: #10B981;
+            transform: scale(1.2);
+            border-color: #10B981;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(16,185,129,0.8);
+        }
+
+        .carousel-arrow.prev {
+            left: 15px;
+        }
+
+        .carousel-arrow.next {
+            right: 15px;
+        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -854,8 +935,27 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="assets/screenshot-hero.png" alt="EngageAI gerando respostas automáticas para comentários do YouTube">
-            <div class="badge-free">🎁 3 respostas grátis/mês</div>
+            <div class="hero-carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="exemplos/print06.png" alt="EngageAI - Análise de Comentários">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="exemplos/print09.png" alt="EngageAI - Resposta em Massa">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="exemplos/print03.png" alt="EngageAI - Gerando Respostas">
+                    </div>
+                </div>
+                <button class="carousel-arrow prev" onclick="moveCarousel(-1)">‹</button>
+                <button class="carousel-arrow next" onclick="moveCarousel(1)">›</button>
+                <div class="carousel-nav">
+                    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(2)"></span>
+                </div>
+            </div>
+            <div class="badge-free">🎁 10 respostas grátis/mês</div>
         </div>
     </section>
 
@@ -1134,6 +1234,36 @@
                 }
             });
         });
+
+        // Carrossel de imagens
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Auto-play do carrossel
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
     </script>
 </body>
 </html>
