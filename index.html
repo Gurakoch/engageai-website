@@ -1239,35 +1239,39 @@
             });
         });
 
-        // Carrossel de imagens
-        let currentSlide = 0;
-        const totalSlides = 4;
+        // Carrossel de imagens - Aguarda DOM estar pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const totalSlides = 4;
 
-        function moveCarousel(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            updateCarousel();
-        }
+            window.moveCarousel = function(direction) {
+                currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+                updateCarousel();
+            };
 
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
+            window.goToSlide = function(index) {
+                currentSlide = index;
+                updateCarousel();
+            };
 
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const dots = document.querySelectorAll('.carousel-dot');
-            
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
+            function updateCarousel() {
+                const track = document.getElementById('carouselTrack');
+                const dots = document.querySelectorAll('.carousel-dot');
+                
+                if (track) {
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
 
-        // Auto-play do carrossel
-        setInterval(() => {
-            moveCarousel(1);
-        }, 5000);
+            // Auto-play do carrossel
+            setInterval(() => {
+                window.moveCarousel(1);
+            }, 5000);
+        });
     </script>
 </body>
 </html>
