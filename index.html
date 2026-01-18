@@ -262,7 +262,6 @@
 
         .carousel-slide {
             min-width: 100%;
-            flex-shrink: 0;
             position: relative;
         }
 
@@ -1240,10 +1239,25 @@
             });
         });
 
-        // Carrossel de imagens - Aguarda DOM estar pronto
-        document.addEventListener('DOMContentLoaded', function() {
-            let currentSlide = 0;
-            const totalSlides = 4;
+        // Carrossel de imagens
+        (function() {
+            var currentSlide = 0;
+            var totalSlides = 4;
+            var track = document.getElementById('carouselTrack');
+            var dots = document.querySelectorAll('.carousel-dot');
+
+            function updateCarousel() {
+                if (track) {
+                    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+                }
+                for (var i = 0; i < dots.length; i++) {
+                    if (i === currentSlide) {
+                        dots[i].classList.add('active');
+                    } else {
+                        dots[i].classList.remove('active');
+                    }
+                }
+            }
 
             window.moveCarousel = function(direction) {
                 currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
@@ -1255,24 +1269,14 @@
                 updateCarousel();
             };
 
-            function updateCarousel() {
-                const track = document.getElementById('carouselTrack');
-                const dots = document.querySelectorAll('.carousel-dot');
-                
-                if (track) {
-                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-                }
-                
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
-                });
-            }
-
-            // Auto-play do carrossel
-            setInterval(() => {
+            // Auto-play do carrossel a cada 5 segundos
+            setInterval(function() {
                 window.moveCarousel(1);
             }, 5000);
-        });
+
+            // Inicializa
+            updateCarousel();
+        })();
     </script>
 </body>
 </html>
