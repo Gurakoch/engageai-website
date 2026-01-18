@@ -1241,14 +1241,23 @@
 
         // Carrossel de imagens
         (function() {
+            console.log('Carrossel: Iniciando...');
             var currentSlide = 0;
             var totalSlides = 4;
             var track = document.getElementById('carouselTrack');
             var dots = document.querySelectorAll('.carousel-dot');
+            
+            console.log('Carrossel: track encontrado?', !!track);
+            console.log('Carrossel: dots encontrados:', dots.length);
 
             function updateCarousel() {
+                console.log('Carrossel: updateCarousel chamado, slide:', currentSlide);
                 if (track) {
-                    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+                    var transformValue = 'translateX(-' + (currentSlide * 100) + '%)';
+                    console.log('Carrossel: aplicando transform:', transformValue);
+                    track.style.transform = transformValue;
+                } else {
+                    console.log('Carrossel: ERRO - track não encontrado!');
                 }
                 for (var i = 0; i < dots.length; i++) {
                     if (i === currentSlide) {
@@ -1260,22 +1269,28 @@
             }
 
             window.moveCarousel = function(direction) {
+                console.log('Carrossel: moveCarousel chamado, direction:', direction);
                 currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
                 updateCarousel();
             };
 
             window.goToSlide = function(index) {
+                console.log('Carrossel: goToSlide chamado, index:', index);
                 currentSlide = index;
                 updateCarousel();
             };
 
             // Auto-play do carrossel a cada 5 segundos
+            console.log('Carrossel: Iniciando auto-play...');
             setInterval(function() {
+                console.log('Carrossel: auto-play tick');
                 window.moveCarousel(1);
             }, 5000);
 
             // Inicializa
+            console.log('Carrossel: Inicializando...');
             updateCarousel();
+            console.log('Carrossel: Pronto!');
         })();
     </script>
 </body>
