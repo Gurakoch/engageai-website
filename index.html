@@ -1193,12 +1193,18 @@
     <script>
         const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/engageai-youtube-reply-ge/jnpdhphjpfgmiapllghmkbakpgpbogjj';
 
-        // Links dos botões
-        document.getElementById('install-btn').href = CHROME_STORE_URL;
-        document.getElementById('free-btn').href = CHROME_STORE_URL;
-        document.getElementById('basic-btn').href = CHROME_STORE_URL;
-        document.getElementById('pro-btn').href = CHROME_STORE_URL;
-        document.getElementById('final-cta').href = CHROME_STORE_URL;
+        // Links dos botões (verifica se existem antes de atribuir)
+        var installBtn = document.getElementById('install-btn');
+        var freeBtn = document.getElementById('free-btn');
+        var creatorBtn = document.getElementById('creator-btn');
+        var proBtn = document.getElementById('pro-btn');
+        var finalCta = document.getElementById('final-cta');
+        
+        if (installBtn) installBtn.href = CHROME_STORE_URL;
+        if (freeBtn) freeBtn.href = CHROME_STORE_URL;
+        if (creatorBtn) creatorBtn.href = CHROME_STORE_URL;
+        if (proBtn) proBtn.href = CHROME_STORE_URL;
+        if (finalCta) finalCta.href = CHROME_STORE_URL;
 
         // Mobile menu
         function toggleMenu() {
@@ -1241,23 +1247,14 @@
 
         // Carrossel de imagens
         (function() {
-            console.log('Carrossel: Iniciando...');
             var currentSlide = 0;
             var totalSlides = 4;
             var track = document.getElementById('carouselTrack');
             var dots = document.querySelectorAll('.carousel-dot');
-            
-            console.log('Carrossel: track encontrado?', !!track);
-            console.log('Carrossel: dots encontrados:', dots.length);
 
             function updateCarousel() {
-                console.log('Carrossel: updateCarousel chamado, slide:', currentSlide);
                 if (track) {
-                    var transformValue = 'translateX(-' + (currentSlide * 100) + '%)';
-                    console.log('Carrossel: aplicando transform:', transformValue);
-                    track.style.transform = transformValue;
-                } else {
-                    console.log('Carrossel: ERRO - track não encontrado!');
+                    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
                 }
                 for (var i = 0; i < dots.length; i++) {
                     if (i === currentSlide) {
@@ -1269,28 +1266,22 @@
             }
 
             window.moveCarousel = function(direction) {
-                console.log('Carrossel: moveCarousel chamado, direction:', direction);
                 currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
                 updateCarousel();
             };
 
             window.goToSlide = function(index) {
-                console.log('Carrossel: goToSlide chamado, index:', index);
                 currentSlide = index;
                 updateCarousel();
             };
 
             // Auto-play do carrossel a cada 5 segundos
-            console.log('Carrossel: Iniciando auto-play...');
             setInterval(function() {
-                console.log('Carrossel: auto-play tick');
                 window.moveCarousel(1);
             }, 5000);
 
             // Inicializa
-            console.log('Carrossel: Inicializando...');
             updateCarousel();
-            console.log('Carrossel: Pronto!');
         })();
     </script>
 </body>
